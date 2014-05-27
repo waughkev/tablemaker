@@ -1,0 +1,16 @@
+<!--HTML file for tablemaker nodejs app, this will contain intiial textboxes for enetering rows and columns-->
+<html>
+	<head><title>Mood List</title></head>
+	<body>
+		<form action="/your_table" method="POST">
+			<p>Enter Your Table Dimensions</p>
+					<p>
+						Number of Rows<input type="radio" name="rows" value="{{rows}}"></input>
+					</p>
+					<p>
+						Number of Columns<input type="radio" name="columns" value="{{colunns}}"></input>
+					</p>
+			<input type="Submit" value="Make My Table" />
+		</form>
+	</body>
+</html>
