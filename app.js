@@ -3,7 +3,7 @@
 //Express will handle front end development
 var express = require('express'),
 	app = express(),
-	cons = require('consolidate'),
+	cons = require('consolidate');
 
 //Express set up
 	app.engine('html', cons.swig);
@@ -38,7 +38,7 @@ var express = require('express'),
 		//else statement will call function to create table
 		else {
 			//declaring table array
-			var tablearray = new Array[];
+			var tablearray = new Array();
 			//Adding the first table elements
 			tablearray.push('<table>');
 			for (var r = 0; x < rows; x++) {
@@ -56,7 +56,7 @@ var express = require('express'),
 //
 //			}
 		}
-	}):
+	});
 
 //start app
 app.listen(3000);
