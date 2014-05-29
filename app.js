@@ -32,11 +32,11 @@ var express = require('express'),
 			columns = req.body.columns;
 
 		//Conditional statement to  send error if either value is not filled in
-		if (rows = '' || columns='') {
-			next(Error('Fill in the columns dummy'));
-		}
+		//if (rows = '' || columns='') {
+		//	next(Error('Fill in the columns dummy'));
+		//}
 		//else statement will call function to create table
-		else {
+		//else {
 			//declaring table array
 			var tablearray = new Array();
 			//Adding the first table elements
@@ -55,7 +55,7 @@ var express = require('express'),
 			//while (i < tablearray.length, i++) {
 //
 //			}
-		}
+//		}
 	});
 
 //start app
