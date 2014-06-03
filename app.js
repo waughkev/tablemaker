@@ -1,13 +1,14 @@
 //Idea: create an app that will compile an html ready table after user slelects number of rows and columns
 //Global variables
 //Express will handle front end development
-var express = require('express'),
+var fs = require('fs'),
+	express = require('express'),
 	app = express(),
 	cons = require('consolidate');
 
 //Express set up
 	app.engine('html', cons.swig);
-	app.set('view engine', 'html');
+	app.set('view engine', 'html'); 
 	app.set('views', __dirname + "/views");
 	app.use(express.bodyParser());
 	app.use(app.router);
@@ -26,36 +27,39 @@ var express = require('express'),
 	});
 
 //Talbemaker page, will take form valuesand creat table from them
-	app.post('/your_table', function (req, res, next) {
+	app.post('/table', function (req, res, next) {
+	res.writeHead(200, {"Content-Type": "text/html"});
+		console.log('Tablemaker script starting');
 		//variables from form
-		var rows = req.body.rows,
-			columns = req.body.columns;
-
-		//Conditional statement to  send error if either value is not filled in
-		//if (rows = '' || columns='') {
-		//	next(Error('Fill in the columns dummy'));
-		//}
-		//else statement will call function to create table
-		//else {
-			//declaring table array
-			var tablearray = new Array();
+			var rows = req.body.rowcount,
+			columns = req.body.columncount,
+			cellpadding = req.body.cellpadding,
+			tableclass = req.body.tableclass;
+			console.log('Rows: ' + rows + ', Columns: ' + columns);
 			//Adding the first table elements
-			tablearray.push('<table>');
-			for (var r = 0; x < rows; x++) {
-				tablearray.push('	<tr>');
-				for (var c = 0; c < columns; x++ ) {
-					tablearray.push('		<td>Row[r], Column[c]</td>');
+			if (tableclass !== "" && cellpadding > 0) {
+				res.write('&lt;table class=&quot;' + tableclass + '&quot; cellpadding=&quot;' + cellpadding + '&quot;&gt;<br />');
+			 } else  if (tableclass !== "" && cellpadding == 0) {
+				res.write('&lt;table class=&quot;' + tableclass + '&quot;&gt;<br />');
+			} else if (tableclass == "" && cellpadding > 0) {
+				res.write('&lt;table cellpadding=&quot;' + cellpadding + '&quot;&gt;<br />');
+			} else {
+				res.write('&lt;table&gt;<br />');
+			}
+			console.log('<table> added to array');
+			for (var r = 1; r <= rows; r++) {
+				res.write('<span style="padding-left:7px">&lt;tr&gt;</span><br />');
+				console.log('Row ' + r + ' added');
+				for (var c = 1; c <= columns; c++ ) {
+					res.write('<span style="padding-left:14px">&lt;td&gt;Row ' + r + ', Column ' + c + '&lt;&#47;td&gt;</span><br />');
+					console.log('Column ' + c + ' added');
 				}
-				tablearray.push(' </tr>');
+				res.write('	&lt;&#47;tr&gt;<br />');
 			}
 			//ending table tag
-			tablearray.push('</table>');
-			//output table in easy to copy and paste format
-			tablearray.toString();
-			//while (i < tablearray.length, i++) {
-//
-//			}
-//		}
+			res.write('&lt;&#47;table&gt;');
+			console.log('Table Complete');
+			res.end();
 	});
 
 //start app
