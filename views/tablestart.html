@@ -1,22 +1,29 @@
 <!--HTML file for tablemaker nodejs app, this will contain initial textboxes for entering rows and columns-->
 <html>
-	<head><title>Table Maker</title></head>
+	<head>
+		<title>Table Maker</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	</head>
 	<body>
-		<form action="/table" method="POST">
-			<p>Enter Your Table Dimensions</p>
-					<p>
-						Number of Rows<input type="text" name="rowcount" value=""></input>
-					</p>
-					<p>
-						Number of Columns<input type="text" name="columncount" value=""></input>
-					</p>
-					<p>
-						Table CSS Class<input type="text" name="tableclass" value=""></input>
-					</p>
-					<p>
-						Cell Padding<input type="text" name="cellpadding" value="0"></input>
-					</p>
-			<input type="Submit" value="Make My Table" />
+		<form action="/table" method="POST" role="form">
+			<h3>Enter Your Table Dimensions</h3>
+				<div class="form-group">
+						<label for="rowcount">Number of Rows</label>
+						<input type="text" name="rowcount" id="rowcount"></input>
+				</div>
+				<div class="form-group">
+						<label for="columncount">Number of Columns</label>
+						<input type="text" name="columncount" id="columncount"></input>
+				</div>
+				<div class="form-group">
+						<label for="tableclass">Table CSS Class</label>
+						<input type="text" name="tableclass" id="tableclass"></input>
+				</div>
+				<div class="form-group">
+						<label for="cellpadding">Cell Padding</label>
+						<input type="text" name="cellpadding" id="cellpadding" value="0"></input>
+				</div>
+			<input type="Submit" class="btn btn-primary btn-lg" value="Make My Table" />
 		</form>
 	</body>
 </html>

@@ -24,11 +24,17 @@ var fs = require('fs'),
 //Server set up for first page, which will call form for selecting rows and columns
 	app.get('/', function (req, res, next){
 			res.render('tablestart');
+			console.log('Start page enabled');
 	});
 
 //Talbemaker page, will take form valuesand creat table from them
 	app.post('/table', function (req, res, next) {
+		//A bunch of writing stuff, until I can get Express to pass an array completly
 	res.writeHead(200, {"Content-Type": "text/html"});
+	res.write('<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">');
+	res.write('<div class="container">');
+	res.write('<h3>Your Table</h3>');
+	res.write('<pre>');
 		console.log('Tablemaker script starting');
 		//variables from form
 			var rows = req.body.rowcount,
@@ -48,16 +54,21 @@ var fs = require('fs'),
 			}
 			console.log('<table> added to array');
 			for (var r = 1; r <= rows; r++) {
-				res.write('<span style="padding-left:7px">&lt;tr&gt;</span><br />');
+				res.write(' &lt;tr&gt;<br />');
 				console.log('Row ' + r + ' added');
 				for (var c = 1; c <= columns; c++ ) {
-					res.write('<span style="padding-left:14px">&lt;td&gt;Row ' + r + ', Column ' + c + '&lt;&#47;td&gt;</span><br />');
+					res.write('  &lt;td&gt;Row ' + r + ', Column ' + c + '&lt;&#47;td&gt;<br />');
 					console.log('Column ' + c + ' added');
 				}
-				res.write('	&lt;&#47;tr&gt;<br />');
+				res.write(' &lt;&#47;tr&gt;<br />');
 			}
 			//ending table tag
 			res.write('&lt;&#47;table&gt;');
+			res.write("</pre>");
+			res.write("<form action='/' method='GET' role='form'>");
+			res.write("<input type='Submit' class='btn btn-primary btn-lg' value='Let Us Make Another' />");
+			res.write("</form>");
+			res.write("</div>");
 			console.log('Table Complete');
 			res.end();
 	});
