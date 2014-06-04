@@ -3,14 +3,14 @@
 //Express will handle front end development
 var express = require('express'),
 	app = express(),
+	bodyParser = require('body-parser'),
 	cons = require('consolidate');
 
 //Express set up
 	app.engine('html', cons.swig);
 	app.set('view engine', 'html'); 
 	app.set('views', __dirname + "/views");
-	app.use(express.bodyParser());
-	app.use(app.router);
+	app.use(bodyParser());
 
 //Handle any errors
 	function errorHandler(err, req, res, next) {
@@ -73,6 +73,5 @@ var express = require('express'),
 	});
 
 //start app
-app.listen(process.env.PORT || 3000, function() {
+app.listen(3000);
 console.log('Tablemaker running');
-)};
