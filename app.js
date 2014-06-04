@@ -1,8 +1,7 @@
 //Idea: create an app that will compile an html ready table after user slelects number of rows and columns
 //Global variables
 //Express will handle front end development
-var fs = require('fs'),
-	express = require('express'),
+var express = require('express'),
 	app = express(),
 	cons = require('consolidate');
 
