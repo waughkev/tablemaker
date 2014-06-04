@@ -73,5 +73,6 @@ var express = require('express'),
 	});
 
 //start app
-app.listen(3000);
-console.log('Tablemaker running');
+app.listen(process.env.PORT || 3000, function() {
+	console.log('Tablemaker running');
+});
