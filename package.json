@@ -1,0 +1,21 @@
+{
+	"name": "tablemaker",
+	"description": "A nodejs app to create a simple html table",
+	"version": "0.0.1",
+	"author": "Kevin Waugh",
+	"maintainers": [
+		{
+		"name": "Kevin",
+		"email": "waughkev@gmail.com"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/waughkev/tablemaker.git"
+	}
+
+	"dependencies" {
+		"express": "3.3.5",
+		"consolidate": "0.9.1",
+	}
+}
