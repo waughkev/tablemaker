@@ -4,7 +4,8 @@
 var express = require('express'),
 	app = express(),
 	bodyParser = require('body-parser'),
-	cons = require('consolidate');
+	cons = require('consolidate'),
+	validator = require('validator');
 
 //Express set up
 	app.engine('html', cons.swig);
@@ -28,6 +29,11 @@ var express = require('express'),
 
 //Talbemaker page, will take form valuesand creat table from them
 	app.post('/table', function (req, res, next) {
+		if (isNaN(req.body.rowcount) || isNaN(req.body.columncount)){
+			res.render('tablestart_error');
+			console.log('Erors, noticed, sending back to form');
+		} else {
+
 		//A bunch of writing stuff, until I can get Express to pass an array completly
 	res.writeHead(200, {"Content-Type": "text/html"});
 	res.write('<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">');
@@ -93,6 +99,7 @@ var express = require('express'),
 			res.write("</div>");
 			console.log('Table Complete');
 			res.end();
+	}
 	});
 
 //start app

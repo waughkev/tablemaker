@@ -1,0 +1,48 @@
+<!--HTML file for tablemaker nodejs app, this will contain initial textboxes for entering rows and columns-->
+<html>
+	<head>
+		<title>Table Maker</title>
+		<!--bootstrap CDN-->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<!--GA Script-->
+		<!--<script type="text/javascript" src="/assets/js/validator.min.js"></script> -->
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51680395-1', 'nodejs-tablemaker.herokuapp.com');
+  ga('send', 'pageview');
+
+</script>
+	</head>
+	<body>
+		<p class="bg-danger">Rows & Columns need to be numbers, please amend.</p>
+		<form action="/table" method="POST" role="form">
+			<h3>Enter Your Table Dimensions</h3>
+				<div class="form-group">
+						<label for="rowcount">Number of Rows</label>
+						<input type="text" name="rowcount" id="rowcount" onchange="checkrownumber()"></input>
+						<span>
+				</div>
+				<div class="form-group">
+						<label for="columncount">Number of Columns</label>
+						<input type="text" name="columncount" id="columncount" value="" onchange="checkcolumnnumber()"></input>
+				</div>
+				<div class="form-group">
+						<label for="tableclass">Table CSS Class</label>
+						<input type="text" name="tableclass" id="tableclass"></input>
+				</div>
+				<div class="form-group">
+						<label for="cellpadding">Cell Padding</label>
+						<input type="text" name="cellpadding" id="cellpadding" value="0"></input>
+				</div>
+				<div class="form-group">
+						<input type="checkbox" name="th_row" id="th_row" checked></input>
+						<label for="th_row">Check if first row will contain <code>&lt;th&gt;&lt;/th&gt;</code> cells</label>
+				</div>
+			<input type="Submit" class="btn btn-primary btn-lg" value="Make My Table" />
+		</form>
+	</body>
+</html>
