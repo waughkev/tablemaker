@@ -31,6 +31,14 @@ var express = require('express'),
 		//A bunch of writing stuff, until I can get Express to pass an array completly
 	res.writeHead(200, {"Content-Type": "text/html"});
 	res.write('<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">');
+	res.write("<script>" + 
+  "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" + 
+  "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," + 
+  "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" + 
+  "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');" + 
+  "ga('create', 'UA-51680395-1', 'nodejs-tablemaker.herokuapp.com');" + 
+  "ga('send', 'pageview');" + 
+   "</script>");
 	res.write('<div class="container">');
 	res.write('<h3>Your Table</h3>');
 	res.write('<pre>');
