@@ -41,18 +41,22 @@ var express = require('express'),
 			cellpadding = req.body.cellpadding,
 			tableclass = req.body.tableclass;
 			console.log('Rows: ' + rows + ', Columns: ' + columns);
+			console.log("th checkbox is: " + req.body.th_row);
+			console.log("CSS Class: " + tableclass + ", Cellpadding: " + cellpadding)
 			//Adding the first table elements
-			if (tableclass !== "" && cellpadding > 0) {
+			if (tableclass !== "" ) {
 				res.write('&lt;table class=&quot;' + tableclass + '&quot; cellpadding=&quot;' + cellpadding + '&quot;&gt;<br />');
-			 } else  if (tableclass !== "" && cellpadding == 0) {
-				res.write('&lt;table class=&quot;' + tableclass + '&quot;&gt;<br />');
-			} else if (tableclass == "" && cellpadding > 0) {
-				res.write('&lt;table cellpadding=&quot;' + cellpadding + '&quot;&gt;<br />');
 			} else {
-				res.write('&lt;table&gt;<br />');
-			}
-			console.log('<table> added to array');
-			for (var r = 1; r <= rows; r++) {
+				res.write('&lt;table cellpadding=&quot;' + cellpadding + '&quot;&gt;<br />');
+			} 
+			console.log('<table> written');
+			//adding if statement to handle <th></th> row
+			if (req.body.th_row == "on") {
+				for (var c = 1; c <= columns; c++ ) {
+					res.write('  &lt;th&gt;Row 1, Column ' + c + '&lt;&#47;th&gt;<br />');
+					console.log('Column ' + c + ' added');
+				}
+				for (var r = 2; r <= rows; r++) {
 				res.write(' &lt;tr&gt;<br />');
 				console.log('Row ' + r + ' added');
 				for (var c = 1; c <= columns; c++ ) {
@@ -60,7 +64,18 @@ var express = require('express'),
 					console.log('Column ' + c + ' added');
 				}
 				res.write(' &lt;&#47;tr&gt;<br />');
-			}
+				}
+			} else {
+				for (var r = 1; r <= rows; r++) {
+					res.write(' &lt;tr&gt;<br />');
+					console.log('Row ' + r + ' added');
+					for (var c = 1; c <= columns; c++ ) {
+						res.write('  &lt;td&gt;Row ' + r + ', Column ' + c + '&lt;&#47;td&gt;<br />');
+						console.log('Column ' + c + ' added');
+					}
+					res.write(' &lt;&#47;tr&gt;<br />');
+				}
+		}
 			//ending table tag
 			res.write('&lt;&#47;table&gt;');
 			res.write("</pre>");
