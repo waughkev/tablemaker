@@ -68,15 +68,15 @@ var express = require('express'),
 			if (req.body.th_row == "on") {
 				res.write(' &lt;tr&gt;<br />');
 				for (var c = 1; c <= columns; c++ ) {
-					res.write('  &lt;th&gt;Row 1, Column ' + c + '&lt;&#47;th&gt;<br />');
+					res.write('  &lt;th&gt;&lt;&#47;th&gt;<br />');
 					console.log('Column ' + c + ' added');
+					}
 					res.write(' &lt;&#47;tr&gt;<br />');
-				}
 				for (var r = 2; r <= rows; r++) {
 				res.write(' &lt;tr&gt;<br />');
 				console.log('Row ' + r + ' added');
 				for (var c = 1; c <= columns; c++ ) {
-					res.write('  &lt;td&gt;Row ' + r + ', Column ' + c + '&lt;&#47;td&gt;<br />');
+					res.write('  &lt;td&gt;&lt;&#47;td&gt;<br />');
 					console.log('Column ' + c + ' added');
 				}
 				res.write(' &lt;&#47;tr&gt;<br />');
@@ -86,7 +86,7 @@ var express = require('express'),
 					res.write(' &lt;tr&gt;<br />');
 					console.log('Row ' + r + ' added');
 					for (var c = 1; c <= columns; c++ ) {
-						res.write('  &lt;td&gt;Row ' + r + ', Column ' + c + '&lt;&#47;td&gt;<br />');
+						res.write('  &lt;td&gt;&lt;&#47;td&gt;<br />');
 						console.log('Column ' + c + ' added');
 					}
 					res.write(' &lt;&#47;tr&gt;<br />');
