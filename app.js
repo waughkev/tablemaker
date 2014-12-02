@@ -66,9 +66,11 @@ var express = require('express'),
 			console.log('<table> written');
 			//adding if statement to handle <th></th> row
 			if (req.body.th_row == "on") {
+				res.write(' &lt;tr&gt;<br />');
 				for (var c = 1; c <= columns; c++ ) {
 					res.write('  &lt;th&gt;Row 1, Column ' + c + '&lt;&#47;th&gt;<br />');
 					console.log('Column ' + c + ' added');
+					res.write(' &lt;&#47;tr&gt;<br />');
 				}
 				for (var r = 2; r <= rows; r++) {
 				res.write(' &lt;tr&gt;<br />');
