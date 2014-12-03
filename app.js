@@ -53,15 +53,16 @@ var express = require('express'),
 			var rows = req.body.rowcount,
 			columns = req.body.columncount,
 			cellpadding = req.body.cellpadding,
+			cellspacing = req.body.cellspacing,
 			tableclass = req.body.tableclass;
 			console.log('Rows: ' + rows + ', Columns: ' + columns);
 			console.log("th checkbox is: " + req.body.th_row);
-			console.log("CSS Class: " + tableclass + ", Cellpadding: " + cellpadding)
+			console.log("CSS Class: " + tableclass + ", Cellpadding: " + cellpadding + ", Cellspacing" + cellspacing)
 			//Adding the first table elements
 			if (tableclass !== "" ) {
-				res.write('&lt;table class=&quot;' + tableclass + '&quot; cellpadding=&quot;' + cellpadding + '&quot;&gt;<br />');
+				res.write('&lt;table class=&quot;' + tableclass + '&quot; cellpadding=&quot;' + cellpadding + '&quot; cellspacing=&quot;' + cellspacing + '&quot;&gt;<br />');
 			} else {
-				res.write('&lt;table cellpadding=&quot;' + cellpadding + '&quot;&gt;<br />');
+				res.write('&lt;table cellpadding=&quot;' + cellpadding + '&quot; cellspacing=&quot;' + cellspacing + '&quot;&gt;<br />');
 			} 
 			console.log('<table> written');
 			//adding if statement to handle <th></th> row
